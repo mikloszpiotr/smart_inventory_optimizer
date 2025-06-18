@@ -40,7 +40,7 @@ This app helps supply chain professionals:
 
 - **Multiple Forecasting Models:** Easily compare the performance of different models on your own data.
 - **Automated Inventory Recommendations:** Get recommended reorder quantities for every SKU based on forecasted demand, current inventory, and a safety buffer.
-- **Critical Inventory KPIs:** Visualize stockout risk, service level, inventory turnover, and more.
+- **Critical Inventory KPIs:** Current Inventory, Forecasted Demand and more.
 - **Flexible Data Input:** Upload your own CSV with sales, inventory, and SKU data.
 - **Sample Data Included:** Try the app instantly without setup.
 
@@ -88,12 +88,6 @@ This app helps supply chain professionals:
 - **Current inventory per SKU**
 - **Recommended reorder quantity**
 - **Service level, stockout risk, turnover**
-
----
-
-## 📬 Questions or Suggestions?
-
-Open an issue or connect on [LinkedIn](https://www.linkedin.com/).
 
 ---
 
