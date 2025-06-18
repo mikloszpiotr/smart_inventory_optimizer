@@ -1,17 +1,14 @@
-import pandas as pd
 from prophet import Prophet
 
-def prophet_forecast(data: pd.DataFrame) -> dict:
-    """
-    Use Facebook Prophet to forecast the next day's demand per SKU.
-    """
-    forecasts = {}
-    for sku, grp in data.groupby('SKU'):
-        df = grp[['Date', 'Sales']].rename(columns={'Date': 'ds', 'Sales': 'y'})
-        m = Prophet(daily_seasonality=True, weekly_seasonality=True)
-        m.fit(df)
-        future = m.make_future_dataframe(periods=1, freq='D')
-        pred = m.predict(future)
-        next_y = pred.iloc[-1]['yhat']
-        forecasts[sku] = max(0, int(round(next_y)))
-    return forecasts
+def prophet_forecast(data):
+    results = {}
+    for sku in data['SKU'].unique():
+        sub = data[data['SKU'] == sku].sort_values('Date')
+        dfp = sub.rename(columns={'Date': 'ds', 'Sales': 'y'})[['ds', 'y']]
+        model = Prophet(daily_seasonality=True, yearly_seasonality=False)
+        model.fit(dfp)
+        future = model.make_future_dataframe(periods=1, freq='D', include_history=True)
+        forecast = model.predict(future)
+        yhat = forecast.iloc[-1]['yhat']
+        results[sku] = yhat
+    return results
